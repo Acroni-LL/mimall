@@ -1,12 +1,12 @@
 
-// 使用cjs因为是webpack使用的
+//使用cjs因为是webpack使用的
 module.exports = {
   devServer: {
     host: 'localhost',
     port: 8080,
     proxy: {
       '/api': {
-        target: 'http://mall-pre.springboot.cn',
+        target: 'http://localhost:8080',
         changeOrigin: true,
         pathRewrite: {
           '/api': ''

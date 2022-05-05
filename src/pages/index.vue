@@ -8,8 +8,6 @@
 export default {
   name: 'nav-home',
   components: {
-
-    name: 'index'
   }
 }
 </script>
