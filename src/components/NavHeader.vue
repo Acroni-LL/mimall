@@ -27,7 +27,7 @@
             href="javascript:;"
             class="my-cart"
             @click="goToCart()"
-          ><span class="icon-cart"></span> 购物车</a>
+          ><span class="icon-cart"></span> 购物车{{cartCount}}</a>
         </div>
       </div>
     </div>
@@ -179,11 +179,11 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   name: 'nav-header',
   data () {
     return {
-      username: 'jack',
       phoneList: []
     }
   },
@@ -212,6 +212,15 @@ export default {
       this.$router.push('/cart')
     }
   },
+  computed: {
+    // username () {
+    //   return this.$stor.state.username
+    // },
+    // cartCount () {
+    //   return this.$store.state.cartCount
+    // },
+    ...mapState(['username', 'cartCount'])  //是上面的简写 
+  }
 }
 </script>
 
@@ -241,7 +250,7 @@ export default {
         color: #fff;
         .icon-cart {
           @include bgImg(16px, 12px, './imgs/icon-cart-checked.png');
-          margin-right: 4px;
+          margin-right: 0;
         }
       }
     }
@@ -311,6 +320,7 @@ export default {
           box-shadow: 0px 7px 6px 0px rgba(0, 0, 0, 0.11);
           overflow: hidden;
           transition: all 0.5s;
+          background-color: #fff;
           .product {
             position: relative;
             float: left;

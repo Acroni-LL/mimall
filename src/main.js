@@ -3,6 +3,9 @@ import App from './App.vue'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import router from './router'
+import VueLazyLoad from 'vue-lazyload'
+import VueCookie from 'vue-cookie'
+import stroe from './stroe'
 // import env from './env'    //  不写./视作插件
 
 //mock switch
@@ -27,16 +30,25 @@ axios.interceptors.response.use(function (response) {
   if (res.status === 0) {
     return res.data
   } else if (res.status === 10) {
-    window.location.href = '/#/login'
+    if (path != '#/index') {
+
+      window.location.href = '/#/login'
+    }
   } else {
     alert(res.msg)
+    return Promise.reject(res)
   }
 })
 
 Vue.use(VueAxios, axios)
+Vue(VueCookie)
+Vue.use(VueLazyLoad, {
+  loading: '/imgs/loading-svg/loading-bars.svg'
+})
 Vue.config.productionTip = false
 
 new Vue({
   router,
+  store,
   render: h => h(App),
 }).$mount('#app')
