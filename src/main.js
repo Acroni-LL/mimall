@@ -5,7 +5,9 @@ import VueAxios from 'vue-axios'
 import router from './router'
 import VueLazyLoad from 'vue-lazyload'
 import VueCookie from 'vue-cookie'
-import stroe from './stroe'
+import store from './store'
+import { Message } from "element-ui";
+import "element-ui/lib/theme-chalk/index.css";
 // import env from './env'    //  不写./视作插件
 
 //mock switch
@@ -34,8 +36,9 @@ axios.interceptors.response.use(function (response) {
 
       window.location.href = '/#/login'
     }
+    return Promise.reject(res)
   } else {
-    alert(res.msg)
+    Message.warning(res.msg)
     return Promise.reject(res)
   }
 })

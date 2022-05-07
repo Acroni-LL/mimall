@@ -86,7 +86,7 @@ export default {
         username,
         password
       }).then((res) => {
-        this.$cookie.set('userId', res.id, { expires: '1M' })
+        this.$cookie.set('userId', res.id, { expires: 'Session' })
         // todo 保存用户名
         // this.$store.dispatch('saveUserName', res.username)
         this.saveUserName(['res.username'])

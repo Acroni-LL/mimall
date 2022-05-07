@@ -179,6 +179,9 @@
 </template>
 
 <script>
+import { Message } from "element-ui";
+import "element-ui/lib/theme-chalk/index.css";
+
 import { mapState } from 'vuex'
 export default {
   name: 'nav-header',
@@ -210,6 +213,21 @@ export default {
     },
     goToCart () {
       this.$router.push('/cart')
+    },
+    logout () {
+      this.axios.post('/user/logout').then(() => {
+        Message.success('登出成功')
+        this.$cookie.set('userId', '', { expires: '-1' })// -1 立即过期 
+        this.$store.dispatch('saveUserName', '')
+        this.$store.dispatch('saveCartCount', '0')
+      })
+    }
+  },
+  mounted () {
+    this.getProductList()
+    let params = this.$route.params
+    if (params && params.from == 'login') {
+      this.getCartCount()
     }
   },
   computed: {
