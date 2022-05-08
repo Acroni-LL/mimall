@@ -28,7 +28,7 @@ export default {
     OrderHeader
   },
   mounted () {
-    let path = this.$rpite.path
+    let path = this.$route.path
     if (path == '/order/confirm') {
       this.title = '订单确认  '
       this.tip = '请填写收货地址'

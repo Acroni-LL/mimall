@@ -29,6 +29,7 @@ axios.defaults.timeout = 8000
 //接口错误拦截
 axios.interceptors.response.use(function (response) {
   let res = response.data
+  let  path=this.$route.path
   if (res.status === 0) {
     return res.data
   } else if (res.status === 10) {

@@ -255,6 +255,7 @@
 <script>
 import OrderHeader from './../components/OrderHeader'
 import Modal from './../components/Modal'
+import { Message } from "element-ui";
 export default {
   name: 'order-confirm',
   data () {
@@ -282,7 +283,7 @@ export default {
       this.axios.get('/carts').then((res) => {
         this.list = res.cartProductVoList //all goods data
         this.cartTotalPrice = res.cartTotalPrice
-        this.cartList = list.filter(item => item.productSelected)
+        this.cartList = res.list.filter(item => item.productSelected)
         this.map((item) => {
           this.count += item.quantity
         })
